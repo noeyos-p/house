@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import './AppNavBar.css'
+// import './AppNavBar.css'
 // Route : 페이지(컴포넌트) 이동 처리
 // Routes : Route를 감싸는 용도
 // Link : 실제로 페이지를 보여주는 역할, Link위치에 컴포넌트 뿌려줌
@@ -8,7 +8,6 @@ import './AppNavBar.css'
 import { Link, useNavigate } from "react-router-dom";
 
 function AppNavBar(){
-
   const navigate = useNavigate();
 
   return (
@@ -29,3 +28,7 @@ function AppNavBar(){
   )
 }
 export default AppNavBar;
+/* 이 파일에서 기본으로 내보낼 대상은 AppNavBar라는 컴포넌트임을 말해줌
+- 이것을 App.jsx에서 불러올때 
+- import AppNavBar form "./AppNavBar"; 이렇게 불러옴 
+- import Nav <-- 바꾸어도 상관없음 from "./AppNavBar"; 이렇게 불러올 수도 있음 */
