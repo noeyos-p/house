@@ -20,7 +20,8 @@ function Product({house}) {
       onClick={()=>{
         navigate(`/detail/${house.id}`)
       }}
-      src={image} width="80%" />
+      src={image} 
+      style={{ width: "100%" , objectFit: "cover"}}/>
       <h4>{house.title}</h4>
       <p>{house.content}</p>
     </>

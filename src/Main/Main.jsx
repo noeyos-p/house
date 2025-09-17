@@ -1,5 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Product from '../Product'
+import { useState } from 'react';
 /*  
 - Container 
   : 전체 레이아웃을 감싸는 박스 역할
@@ -16,17 +17,52 @@ import Product from '../Product'
   : Row 안에서 칸을 차지하는 컴포넌트
   : 부트스트랩의 12칸 그리드 시스템을 기반으로 나눠짐
 */
+function SortNavBar({product}) {
+  const [list, setList] = useState(product);
+  const restList = () => {
+    setList(original);
+  }
+  /* 원래 순서로 복구 */
+  const sortByPrice = () => {
+    const sorted = [...list].sort((a, b) => a.price - b.price);
+    setList(sorted);
+  }
+  /* 가격 낮은 순으로 정렬 하는 방법, a와 b만을 사용하여 비교함 */
+  const sortHighByPrice = () => {
+    const sorted = [...list].sort((a, b) => b.price - a.price);
+    setList(sorted);
+  }
+  /* 가격 높은 순으로 정렬 하는 방법, a와 b만을 사용하여 비교함 */
+  const abcByName = () => {
+    const sorted = [...list].sort((a, b) => a.title.localeCompare(b.title));
+    setList(sorted);
+  }
 
-function Main({product}){
-  return(
+  return (
+    <>
+      <div className="App">
+        <div bg="dark" data-bs-theme="dark">
+          <div onClick={restList}>기본정렬</div>
+          <div onClick={sortByPrice}>가격 낮은 순</div>
+          <div onClick={sortHighByPrice}>가격 높은 순</div>
+          <div onClick={abcByName}>가나다 순</div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function Main({ product }) {
+  return (
     <div>
+      <SortNavBar/>
       <Container>
         <Row>
           {
             product.map((house, _) => {
               return (
                 <Col key={house.id} className="text-center">
-                  {/* Product 컴포넌트 자리 */}
+                  {/* Product 컴포넌트 자리 */} 
                   <Product house={house} />
                 </Col>
               )
